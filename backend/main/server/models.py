@@ -5,14 +5,16 @@ class Gallery(db.Model):
     __tablename__ = 'GALLERY'
     artworkID = db.Column(db.Integer, primary_key=True, autoincrement=True)
     artworkLink = db.Column(db.String(2048), nullable=False)
+    blurhash = db.Column(db.String(64), nullable=True)
     artistLink = db.Column(db.String(2048), nullable=True)
     username = db.Column(db.String(64), nullable=True)
     title = db.Column(db.String(64), nullable=True)
     __table_args__ = (db.UniqueConstraint('artworkLink'),
             )
 
-    def __init__(self, artworkLink, username, title, artistLink):
+    def __init__(self, artworkLink, blurhash, username, title, artistLink):
         self.artworkLink = artworkLink
+        self.blurhash = blurhash
         self.artistLink = artistLink
         self.username = username
         self.title = title
@@ -20,6 +22,7 @@ class Gallery(db.Model):
 class GallerySchema(ma.Schema):
     artworkID = fields.Integer()
     artworkLink = fields.String(required=True)
+    blurhash = fields.String(required=False)
     artistLink = fields.String(required=False)
     username = fields.String(required=True)
     title = fields.String(required=False)

@@ -1,7 +1,8 @@
-import BaseCard, {BaseCardProps, BaseCardState} from "../../../shared/components/baseCard/baseCard";
+import BaseCard, { BaseCardProps, BaseCardState } from "../../../shared/components/baseCard/baseCard";
 import { Artwork } from '../../../models/artwork';
 import './artworkCard.css';
 import { linkToString } from '../../../models/url';
+import { decode } from "blurhash";
 
 enum ImageLoadingState {
     NotLoaded,
@@ -28,6 +29,7 @@ export default class ArtworkCard extends BaseCard<Artwork, ArtworkCardProps, Art
         this.imageElement = document.createElement("img");
 
         this.imageLoaded = this.imageLoaded.bind(this);
+        this.getBlurImage = this.getBlurImage.bind(this);
     }
 
     state: ArtworkCardState = {
@@ -62,6 +64,23 @@ export default class ArtworkCard extends BaseCard<Artwork, ArtworkCardProps, Art
         this.setImage();
     }
 
+    getBlurImage() {
+        const width = 32;
+        const height = 32;
+
+        const canvas = document.createElement("canvas");
+        canvas.height = height;
+        canvas.width = width;
+        const ctx = canvas.getContext("2d");
+        const imageData = ctx?.createImageData(width, height);
+        const pixels = decode(this.artwork.blurhash, width, height);
+        imageData?.data.set(pixels);
+        if (imageData) {
+            ctx?.putImageData(imageData, 0, 0);
+        }
+        return canvas.toDataURL();
+    }
+
     renderArtwork() {
         const hasLoaded = this.state.loadingState === ImageLoadingState.Loaded;
         const artworkLink = linkToString(this.artwork.artworkLink);
@@ -69,7 +88,7 @@ export default class ArtworkCard extends BaseCard<Artwork, ArtworkCardProps, Art
 
         return (
             <div className="artwork-card">
-                <img className="artwork-card-img" src={artworkLink} alt={this.artwork.title} />
+                <img className="artwork-card-img" src={hasLoaded ? artworkLink : this.getBlurImage()} alt={this.artwork.title} />
                 <div className="artwork-card-footer">
                     <div className="title">{this.artwork.title}</div>
                     <div className="artist">
