@@ -34,6 +34,7 @@ def insertMultiGallery(data):
         multigallery_entry = MultiGallery(
             setID=data.setID,
             artworkLink=data.artworkLink,
+            blurhash=getBlurCodeFromImage(data.artworkLink),
         )
         db.session.add(multigallery_entry)
     else:
