@@ -23,7 +23,7 @@ export interface ArtworkMetadata {
     setID: string;
     artistLink: ExternalLink;
     username: string;
-    message: string;    
+    message: string;
 }
 
 export interface ArtworkMetadataJson {
@@ -31,17 +31,27 @@ export interface ArtworkMetadataJson {
     setID: string;
     artistLink: string;
     username: string;
-    message: string;    
+    message: string;
+}
+
+export interface MultiArtworkGallery {
+    artworkLink: ExternalLink;
+    blurhash: string;
+}
+
+export interface MultiArtworkGalleryJson {
+    artworkLink: string;
+    blurhash: string;
 }
 
 export interface MultiArtwork {
     metadata: ArtworkMetadata;
-    gallery: Array<string>;
+    gallery: Array<MultiArtworkGallery>;
 }
 
 export interface MultiArtworkJson {
     metadata: ArtworkMetadata;
-    gallery: Array<string>;
+    gallery: Array<MultiArtworkGalleryJson>;
 }
 
 export function artworkFromJson(json: ArtworkJson): Artwork {
@@ -72,7 +82,10 @@ export function multiArtworkFromJson(json: MultiArtworkJson): MultiArtwork {
     const { metadata, gallery } = json;
     return {
         metadata,
-        gallery,
+        gallery: gallery.map(({ artworkLink, blurhash }) => ({
+            artworkLink: stringToLink(artworkLink),
+            blurhash,
+        })),
     }
 }
 
@@ -80,7 +93,10 @@ export function multiArtworkToJson(artwork: MultiArtwork): MultiArtworkJson {
     const { metadata, gallery } = artwork;
     return {
         metadata,
-        gallery,
+        gallery: gallery.map(({ artworkLink, blurhash }) => ({
+            artworkLink: linkToString(artworkLink),
+            blurhash,
+        })),
     }
 }
 
