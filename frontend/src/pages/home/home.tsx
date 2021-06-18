@@ -237,7 +237,8 @@ export default class HomePage extends React.Component<HomePageProps, HomePageSta
                                     <div className="justify-align-center notice-container main-message" style={{"whiteSpace": "pre-line"}}>
                                         <MessageCard key={1} object={{ messageID: 0,
                                             orig_msg: "私たちはあくあクルーの代表者であり、あくたんのための支援プロジェクトを用意しています! 多くはありませんが、あくたんが私たちがここにいることを覚えておいてください.\n\n\
-                                            私たちはあなたの復帰を嬉しく思います。あくたんの配信を楽しみにしています! \
+                                            私たちはあなたの復帰を嬉しく思います。あくたんの配信を楽しみにしています! \n\n\
+                                            おかえりなさい、あくたん！\
                                             ",
                                             tl_msg: "We are some representatives of the Aqua Crew! We have prepared several messages from fans all around the world for you! It's not much, but we hope Aqutan remembers that we’re here cheering you up no matter what happens~ \n\n\
                                             We are happy for your return and we will be looking forward to Aqutan’s streams!\n\n\
