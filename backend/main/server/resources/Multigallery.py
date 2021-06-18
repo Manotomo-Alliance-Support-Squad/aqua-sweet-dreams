@@ -41,16 +41,10 @@ class MultiGalleryListResource(Resource):
         for arkwork, metadata in multigallery:
             if metadata.setID not in set_map:
                 set_map[metadata.setID] = {
-                    "metadata": metadata, "gallery": [{
-                        "artworkLink": arkwork.artworkLink,
-                        "blurhash": arkwork.blurhash
-                    }]
+                    "metadata": metadata, "gallery": [arkwork.artworkLink]
                 }
                 continue
-            set_map[metadata.setID]["gallery"].append({
-                "artworkLink": arkwork.artworkLink,
-                "blurhash": arkwork.blurhash
-            })
+            set_map[metadata.setID]["gallery"].append(arkwork.artworkLink)
         gallery_list = [
             {"metadata": artworks["metadata"], "gallery": artworks["gallery"]}
             for _, artworks in set_map.items()
