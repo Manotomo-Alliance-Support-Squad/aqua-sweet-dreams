@@ -91,7 +91,8 @@
 }
 
 .artwork-card-footer > .title {
-    font-size: 1.75rem;
+    white-space: pre-line;
+    font-size: 1.5rem;
 }
 
 .artwork-card-footer > .artist {
