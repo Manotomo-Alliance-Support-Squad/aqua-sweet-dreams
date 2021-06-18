@@ -38,7 +38,7 @@ export default class MultiArtworkCard extends BaseCard<MultiArtwork, MultiArtwor
                 <div className="artwork-card-footer">
                     <div className="title">{this.metadata.message}</div>
                     <div className="artist">
-                        Artist: <a href={artistLink}>{this.username}</a>
+                        Submitter: <a href={artistLink}>{this.username}</a>
                     </div>
                 </div>
             </div>
