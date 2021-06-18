@@ -19,7 +19,7 @@ export default class HeaderSection extends Component<HeaderProps, HeaderState>
 
     render() {
         return (
-            <header className="app-header">
+            <header id="header" className="app-header">
                 <img src={Aqua_header} className="headerArt" />
             </header>
         )
