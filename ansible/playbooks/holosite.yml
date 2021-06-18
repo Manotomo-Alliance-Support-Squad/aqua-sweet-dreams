@@ -3,7 +3,7 @@
   vars_files:
     - "../vars/vars.yml"
   environment:
-    REACT_APP_CACHE_LIFESPAN: 7200000
+    REACT_APP_CACHE_LIFESPAN: 0
     REACT_APP_API: "{{ backend_proto }}://{{ backend_ip }}:{{ backend_port }}/api/"
   tasks:
 
@@ -104,14 +104,14 @@
 
     - name: "check if systemd service exists"
       stat:
-        path: "/etc/systemd/system/haachama.service"
+        path: "/etc/systemd/system/{{servicename}}.service"
       register: systemd_exists
 
     - name: "upload systemd service file"
       become: yes
       copy:
-        src: "{{ playbook_dir }}/../../systemd/haachama.service"
-        dest: "/etc/systemd/system/haachama.service"
+        src: "{{ playbook_dir }}/../../systemd/{{ servicename }}.service"
+        dest: "/etc/systemd/system/{{ servicename }}.service"
         owner: root
         group: root
         mode: '0644'
@@ -120,7 +120,7 @@
     - name: "enable and start backend systemd service"
       become: yes
       systemd:
-        name: haachama.service
+        name: "{{ servicename }}.service"
         daemon_reload: yes
         state: started
         enabled: yes
