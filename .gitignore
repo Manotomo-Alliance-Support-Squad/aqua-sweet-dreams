@@ -295,3 +295,6 @@ nbdist/
 # Python venv (Windows)
 backend/Scripts
 backend/pyvenv.cfg
+
+# Blur image placeholder
+placeholder.jpg
