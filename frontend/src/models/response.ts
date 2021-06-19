@@ -3,6 +3,7 @@ import {ArtworkJson, MultiArtworkJson} from "./artwork";
 import {ArchiveJson} from "./archive";
 import {AnnouncementJson} from "./announcement";
 import {VideoJson} from "./video";
+import { GameJson } from "./game";
 
 interface BaseResponse {
     status: string;
@@ -22,6 +23,10 @@ export interface MultiGalleryResponse extends BaseResponse {
 
 export interface VideoResponse extends BaseResponse {
     videos: VideoJson[];
+}
+
+export interface GameResponse extends BaseResponse {
+    games: GameJson[];
 }
 
 export interface ArchiveResponse extends BaseResponse {

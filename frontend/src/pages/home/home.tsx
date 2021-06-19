@@ -6,6 +6,7 @@ import ManoAloeService from "../../controllers/mano-aloe.service";
 import SessionService from "../../services/session.service";
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 import ArrowDropDownCircleOutlinedIcon from '@material-ui/icons/ArrowDropDownCircleOutlined';
+import SportsEsportsIcon from '@material-ui/icons/SportsEsports';
 import { Announcement } from "../../models/announcement"
 import { Artwork, MultiArtwork } from "../../models/artwork"
 import { Video } from "../../models/video"
@@ -13,6 +14,7 @@ import './home.css';
 import '../../shared/globalStyles/global.css'
 import AnnouncementSection from "../../components/announcementSection/announcementSection";
 import AnchorSupportedSection from "../../components/anchorSupportedSection/anchorSupportedSection";
+import GameSection from '../../components/gamesSection/gameSection';
 
 // Hack for community card before messages
 import { LanguageContext, LanguageContextValue } from '../../components/languageSwitch/languageContext';
@@ -21,6 +23,7 @@ import '../../components/headerSection/header.css';
 import { Anchor, AnchorSectionPosition } from '../../models/achor';
 import AnchorMultipleSection from '../../components/anchor/anchorMultipleSection';
 import { ReactComponent as AnchorBotan } from "../../assets/icons/anchorIcon.svg";
+import { Game } from '../../models/game';
 
 export interface HomePageProps {
 
@@ -35,6 +38,7 @@ export interface HomePageState {
     artworks: Artwork[];
     multiArtworks: MultiArtwork[];
     videos: Video[];
+    games: Game[];
     activeHrefs: string[];
 }
 
@@ -48,6 +52,11 @@ const Anchors: Anchor[] = [
         href: "#message-anchor",
         svgIcon: AnchorBotan,
         text: "Messages",
+    },
+    {
+        href: "#games-anchor",
+        svgIcon: AnchorBotan,
+        text: "Games",
     },
     {
         href: "#footer-anchor",
@@ -67,6 +76,8 @@ export default class HomePage extends React.Component<HomePageProps, HomePageSta
         this.loadAnnouncements = this.loadAnnouncements.bind(this);
         this.loadMessages = this.loadMessages.bind(this);
         this.loadMultiGallery = this.loadMultiGallery.bind(this);
+        this.loadGames = this.loadGames.bind(this);
+
         this.onAnchorVisible = this.onAnchorVisible.bind(this);
     }
 
@@ -78,6 +89,7 @@ export default class HomePage extends React.Component<HomePageProps, HomePageSta
         announcements: [],
         artworks: [],
         videos: [],
+        games: [],
         multiArtworks: [],
         activeHrefs: [],
     }
@@ -92,6 +104,7 @@ export default class HomePage extends React.Component<HomePageProps, HomePageSta
         this.loadArtwork();
         this.loadVideo();
         this.loadMultiGallery();
+        this.loadGames();
     }
 
     onAnchorVisible(isVisible: boolean, activeHref: string) {
@@ -166,6 +179,22 @@ export default class HomePage extends React.Component<HomePageProps, HomePageSta
         } else {
             getMultipleArtworkFromService().finally(
                 () => SessionService.saveMultiGallery(this.state.multiArtworks)
+            );
+        }
+    }
+
+    async loadGames() {
+        const setGamesToState = (games: Game[]) => this.setState({ games });
+        const getGamseFromService = () => this.manoAloeService.getGame()
+            .then(setGamesToState)
+            .catch(console.error);
+
+        const games = SessionService.getGame() ?? [];
+        if (games?.length) {
+            setGamesToState(games);
+        } else {
+            getGamseFromService().finally(
+                () => SessionService.saveGame(this.state.games)
             );
         }
     }
@@ -292,6 +321,18 @@ export default class HomePage extends React.Component<HomePageProps, HomePageSta
                             </>
                         </AnchorSupportedSection>
                         <AnchorSupportedSection anchor={Anchors[2]} onVisible={this.onAnchorVisible}>
+                            <>
+                                <div className="separator">
+                                    <AnchorLink href='#games-anchor'>
+                                        <SportsEsportsIcon className="anchor-link" style={{ width: 36, height: 36 }} />
+                                    </AnchorLink>
+                                </div>
+                                <div className="wrapper-overlay">
+                                    <GameSection data={this.state.games} />
+                                </div>
+                            </>
+                        </AnchorSupportedSection>
+                        <AnchorSupportedSection anchor={Anchors[3]} onVisible={this.onAnchorVisible}>
                             <div className="justify-center">
                                 <div className="notice-container">
                                     <div className="notice-content" style={{ borderRadius: 0 }}>
