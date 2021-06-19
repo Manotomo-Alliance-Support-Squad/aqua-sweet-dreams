@@ -5,7 +5,7 @@ import { Message } from "../../models/message";
 import ManoAloeService from "../../controllers/mano-aloe.service";
 import SessionService from "../../services/session.service";
 import AnchorLink from 'react-anchor-link-smooth-scroll';
-import ArrowDropDownCircleOutlinedIcon from '@material-ui/icons/ArrowDropDownCircleOutlined';
+import EmailIcon from '@material-ui/icons/Email';
 import SportsEsportsIcon from '@material-ui/icons/SportsEsports';
 import { Announcement } from "../../models/announcement"
 import { Artwork, MultiArtwork } from "../../models/artwork"
@@ -285,7 +285,7 @@ export default class HomePage extends React.Component<HomePageProps, HomePageSta
                             <>
                                 <div className="separator">
                                     <AnchorLink href='#message-anchor'>
-                                        <ArrowDropDownCircleOutlinedIcon className="anchor-link" style={{ width: 36, height: 36 }} />
+                                        <EmailIcon className="anchor-link" style={{ width: 28, height: 36 }} />
                                     </AnchorLink>
                                 </div>
                                 <div id="message-anchor" className="justify-center">
