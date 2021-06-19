@@ -58,7 +58,6 @@ export default class ArtworkImage extends React.Component<ArtworkProps, ArtworkS
     }
 
     render() {
-        console.log(this.getImage())
         return (
             <img className="artwork-card-img" src={this.getImage()} alt={this.props.title} onLoad={() => { this.setState({ loaded: true }) }} />
         )
