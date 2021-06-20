@@ -13,7 +13,7 @@ import { Video } from "../../models/video"
 import './home.css';
 import '../../shared/globalStyles/global.css'
 import AnnouncementSection from "../../components/announcementSection/announcementSection";
-import AnchorSupportedSection from "../../components/anchorSupportedSection/anchorSupportedSection";
+import AnchorSupportedSection, { handleSectionVisibility } from "../../components/anchorSupportedSection/anchorSupportedSection";
 import GameSection from '../../components/gamesSection/gameSection';
 
 // Hack for community card before messages
@@ -21,7 +21,7 @@ import { LanguageContext, LanguageContextValue } from '../../components/language
 import MessageCard from '../../components/messageSection/messageCard/messageCard';
 import '../../components/headerSection/header.css';
 import { Anchor, AnchorSectionPosition } from '../../models/achor';
-import AnchorMultipleSection from '../../components/anchor/anchorMultipleSection';
+import AnchorMultipleSection, { MultipleAnchorStates } from '../../components/anchor/anchorMultipleSection';
 import { ReactComponent as AnchorBotan } from "../../assets/icons/anchorIcon.svg";
 import { Game } from '../../models/game';
 
@@ -39,7 +39,7 @@ export interface HomePageState {
     multiArtworks: MultiArtwork[];
     videos: Video[];
     games: Game[];
-    activeHrefs: string[];
+    activeHrefs: MultipleAnchorStates[];
 }
 
 const Anchors: Anchor[] = [
@@ -47,21 +47,25 @@ const Anchors: Anchor[] = [
         href: "#video-anchor",
         svgIcon: AnchorBotan,
         text: "Video",
+        threshold: .2,
     },
     {
         href: "#message-anchor",
         svgIcon: AnchorBotan,
         text: "Messages",
+        threshold: .1,
     },
     {
         href: "#games-anchor",
         svgIcon: AnchorBotan,
         text: "Games",
+        threshold: .5,
     },
     {
         href: "#footer-anchor",
         svgIcon: AnchorBotan,
         text: "Credit",
+        threshold: .5,
     }
 ]
 
@@ -108,7 +112,7 @@ export default class HomePage extends React.Component<HomePageProps, HomePageSta
     }
 
     onAnchorVisible(isVisible: boolean, activeHref: string) {
-        AnchorSupportedSection.onSectionVisible(this, isVisible, activeHref);
+        handleSectionVisibility(this, isVisible, activeHref);
     }
 
     async loadMessages() {

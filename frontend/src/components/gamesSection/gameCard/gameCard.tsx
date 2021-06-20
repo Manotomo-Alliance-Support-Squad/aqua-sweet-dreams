@@ -26,7 +26,7 @@ export default class GameCard extends BaseCard<Game, GameCardProps, GameCardStat
     }
 
     state: GameCardState = {
-        loaded: true,
+        loaded: false,
         touched: false,
         renderGame: false,
     }
@@ -56,7 +56,7 @@ export default class GameCard extends BaseCard<Game, GameCardProps, GameCardStat
         return this.props.object.thumbnail !== "" && this.props.object.thumbnail !== undefined;
     }
 
-    renderThumbnailPlaceholder(): JSX.Element {
+    renderThumbnailPlaceholder() {
         return (
             <div className="game-thumbnail-placeholder center">
                 <ImageRounded className="absolute-center" style={{ fontSize: 50, color: 'white' }} />
@@ -64,7 +64,7 @@ export default class GameCard extends BaseCard<Game, GameCardProps, GameCardStat
         )
     }
 
-    renderGameThumbnail(): JSX.Element {
+    renderGameThumbnail() {
         return (
             <div className="game-thumbnail-container">
                 {this.checkIfThumbnailPresent() ?
@@ -82,7 +82,7 @@ export default class GameCard extends BaseCard<Game, GameCardProps, GameCardStat
         )
     }
 
-    renderGame(): JSX.Element {
+    renderGame() {
         const gameUrl = linkToString(this.props.object.gameLink);
         return (
             <div>
@@ -104,7 +104,7 @@ export default class GameCard extends BaseCard<Game, GameCardProps, GameCardStat
         )
     }
 
-    render(): JSX.Element {
+    render() {
         return this.renderCard(this.renderGame());
     }
 }

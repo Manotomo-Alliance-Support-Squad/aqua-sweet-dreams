@@ -2,6 +2,7 @@ export interface Anchor {
     href: string;
     svgIcon: React.FunctionComponent<React.SVGProps<SVGSVGElement>> | null;
     text?: string;
+    threshold?: number;
 }
 
 export enum AnchorSectionPosition {
