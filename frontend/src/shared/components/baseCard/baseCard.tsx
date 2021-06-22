@@ -31,9 +31,8 @@ export default class BaseCard<T, P extends BaseCardProps<T>, S extends BaseCardS
         loaded: false
     } as S
 
-    private toggleVisibility(inViewport: boolean): void {
+    protected toggleVisibility(inViewport: boolean): void {
         if (inViewport) {
-            console.log(inViewport && "cccc")
             this.setState({ loaded: true });
         }
     }
