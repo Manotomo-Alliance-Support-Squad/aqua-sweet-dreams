@@ -9,7 +9,7 @@
 .anchor-section {
     position: fixed;
     background-color: transparent;
-    z-index: 99;
+    z-index: 0;
     margin: 5px;
     margin-right: 0px;
     top: 50%;
