@@ -8,6 +8,7 @@ import '../gameSection.css'
 import './gameCard.css'
 import DisplayedLanguage from "../../../models/language";
 import ArtworkImage from "../../gallery/artworkCard/artworkImage";
+import InView from "react-intersection-observer";
 
 export interface GameCardProps extends BaseCardProps<Game> {
     language: DisplayedLanguage,
@@ -67,6 +68,9 @@ export default class GameCard extends BaseCard<Game, GameCardProps, GameCardStat
     renderGameThumbnail() {
         return (
             <div className="game-thumbnail-container">
+                <IconButton onClick={this.toggleGame}>
+                    <PlayCircleOutline className="btn" />
+                </IconButton>
                 {this.checkIfThumbnailPresent() ?
                     <ArtworkImage artworkLink={stringToLink(this.props.object.thumbnail)} blurhash={this.props.object.blurhash} title={this.props.object.title} />
                     :
@@ -82,29 +86,32 @@ export default class GameCard extends BaseCard<Game, GameCardProps, GameCardStat
         )
     }
 
-    renderGame() {
+    renderGameCover() {
         const gameUrl = linkToString(this.props.object.gameLink);
         return (
-            <div>
+            <div className="game-cover">
                 <div className="button-row">
                     <div className="game-text">{this.props.object.title}</div>
                     <div className="button-right">
-                        <IconButton onClick={this.toggleGame}>
-                            <PlayCircleOutline className="btn" />
-                        </IconButton>
                         <IconButton onClick={() => this.launchGameNewWindow(gameUrl)}>
                             <Launch className="btn" />
                         </IconButton>
                     </div>
                 </div>
-                {this.renderGameThumbnail()}
                 <div className="game-description">{this.props.object.description}</div>
+                <div className="card-footer" />
                 {this.state.renderGame && this.renderGameWindow()}
             </div>
         )
     }
 
-    render() {
-        return this.renderCard(this.renderGame());
+    public render() {
+        const { loaded } = this.state;
+        return (
+            <InView className={"game-container" + (loaded ? "" : " view-port-hidden")} onChange={this.toggleVisibility.bind(this)} skip={loaded} threshold={.8}>
+                {this.renderGameThumbnail()}
+                {this.renderGameCover()}
+            </InView>
+        );
     }
 }

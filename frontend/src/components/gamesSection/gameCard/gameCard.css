@@ -1,17 +1,83 @@
 .game-text {
     font-size: 24px;
     margin: auto 0;
-    padding-bottom: 10px;
+    padding-left: 10px;
 }
 
 .game-description {
     margin: 0 auto;
     font-size: 20px;
-    padding: 20px 10px;
+    padding: 0 25px;
+    word-wrap: break-word;
+}
+
+.game-container {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
 }
 
 .game-thumbnail-container {
+    height: 45vw;
+    width: 45vw;
+    max-width: 500px;
+    max-height: 500px;
+    margin-left: -75px;
+    position: relative;
+    transition: all 0.8s ease;
+}
+
+.game-thumbnail-container button {
+    position: absolute;
+    top: calc(50% - .5em);
+    right: calc(50% - 0.7em);
+    z-index: 1;
+    background: #ffffffb6;
+    padding: 2px;
+    font-size: 4.5em;
+    color: #5e5097;
+    transition: margin .5s ease;
+}
+
+.game-thumbnail-container button:hover {
+    color: white;
+}
+
+.game-thumbnail-container .MuiSvgIcon-root {
+    font-size: unset;
+}
+
+.game-thumbnail-container img {
+    position: absolute;
+    border-radius: 50%;
+    border: 4px solid #2c00471f;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+}
+
+.game-cover {
+    height: 47vw;
+    min-width: 600px;
+    max-width: 800px;
+    max-height: 550px;
+    background-color: var(--main-background-color);
+    z-index: 1;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+    position: relative;
     border-radius: 10px;
+}
+
+.game-cover .card-footer {
+    position: absolute;
+    width: 100%;
+    bottom: -1px;
+}
+
+.view-port-hidden {
+    opacity: 1;
+}
+
+.view-port-hidden .game-thumbnail-container {
+    margin-left: -350px;
 }
 
 .game-thumbnail {

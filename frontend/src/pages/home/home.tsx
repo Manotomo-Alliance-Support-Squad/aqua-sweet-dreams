@@ -332,7 +332,7 @@ export default class HomePage extends React.Component<HomePageProps, HomePageSta
                                     </AnchorLink>
                                 </div>
                                 <div className="wrapper-overlay">
-                                    <GameSection data={this.state.games} />
+                                    <GameSection data={this.state.games} customSectionStyle="game-section" />
                                 </div>
                             </>
                         </AnchorSupportedSection>

@@ -1,4 +1,4 @@
-.game-container {
+.game-window-container {
     z-index: 1001;
     position: fixed;
     top: 0;
@@ -53,4 +53,8 @@
     align-items: flex-start;
     overflow: auto;
     height: 100%;
+}
+
+.game-section {
+    column-count: 1;
 }
