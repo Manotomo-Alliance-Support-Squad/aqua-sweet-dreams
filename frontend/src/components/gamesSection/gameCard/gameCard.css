@@ -8,6 +8,7 @@
     margin: 0 auto;
     font-size: 20px;
     padding: 0 25px;
+    padding-bottom: 35px;
     word-wrap: break-word;
 }
 
@@ -18,8 +19,8 @@
 }
 
 .game-thumbnail-container {
-    height: 45vw;
-    width: 45vw;
+    height: 40vw;
+    width: 40vw;
     max-width: 500px;
     max-height: 500px;
     margin-left: -75px;
@@ -28,19 +29,25 @@
 }
 
 .game-thumbnail-container button {
+    width: fit-content;
+    height: fit-content;
     position: absolute;
-    top: calc(50% - .5em);
-    right: calc(50% - 0.7em);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
     z-index: 1;
     background: #ffffffb6;
     padding: 2px;
     font-size: 4.5em;
     color: #5e5097;
-    transition: margin .5s ease;
+    transition: all .5s ease;
 }
 
 .game-thumbnail-container button:hover {
     color: white;
+    background: #383838ab;
 }
 
 .game-thumbnail-container .MuiSvgIcon-root {
@@ -51,16 +58,16 @@
     position: absolute;
     border-radius: 50%;
     border: 4px solid #2c00471f;
+    box-sizing: border-box;
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
 }
 
 .game-cover {
-    height: 47vw;
-    min-width: 600px;
-    max-width: 800px;
+    height: 45vw;
+    min-width: 550px;
+    max-width: 600px;
     max-height: 550px;
     background-color: var(--main-background-color);
-    z-index: 1;
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
     position: relative;
     border-radius: 10px;
@@ -80,6 +87,10 @@
     margin-left: -350px;
 }
 
+.view-port-hidden .game-thumbnail-container button {
+    opacity: 0;
+}
+
 .game-thumbnail {
     width: 100%;
     height: auto;
@@ -96,4 +107,35 @@
 .button-right .btn {
     font-size: 40px;
     color: #5e5097;
+}
+
+@media (max-width: 1023px) {
+    .game-container {
+        flex-direction: column;
+        justify-content: center;
+        min-height: 135vw;
+    }
+    .game-thumbnail-container {
+        height: 75vw;
+        width: 75vw;
+        max-width: 550px;
+        max-height: 550px;
+        margin-left: 0;
+        margin-bottom: -12vw;
+    }
+    .game-cover {
+        width: 80vw;
+        min-width: unset;
+        height: unset;
+        min-height: 80vw;
+        max-height: unset;
+        transition: all 0.8s ease;
+    }
+    .view-port-hidden .game-thumbnail-container {
+        margin-left: unset;
+        margin-bottom: -25vw;
+    }
+    .view-port-hidden .game-cover {
+        margin-top: -20vw;
+    }
 }
