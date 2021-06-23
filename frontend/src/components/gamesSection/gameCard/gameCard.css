@@ -1,3 +1,8 @@
+:root {
+    --game-button-color: var(--theme-card-header-background);
+    --game-button-hover-color: white;
+}
+
 .game-text {
     font-size: 24px;
     margin: auto 0;
@@ -23,30 +28,32 @@
     width: 40vw;
     max-width: 500px;
     max-height: 500px;
-    margin-left: -75px;
     position: relative;
+    /*For slide in-out effect*/
+    margin-left: -75px;
     transition: all 0.8s ease;
 }
 
 .game-thumbnail-container button {
+    z-index: 1;
+    background: #ffffffb6;
+    padding: 2px;
+    font-size: 4.5em;
+    color: var(--game-button-color);
+    transition: all .5s ease;
+    /*To keep button at the center of the disc*/
+    position: absolute;
     width: fit-content;
     height: fit-content;
-    position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
     margin: auto;
-    z-index: 1;
-    background: #ffffffb6;
-    padding: 2px;
-    font-size: 4.5em;
-    color: #5e5097;
-    transition: all .5s ease;
 }
 
 .game-thumbnail-container button:hover {
-    color: white;
+    color: var(--game-button-hover-color);
     background: #383838ab;
 }
 
@@ -63,9 +70,9 @@
 }
 
 .game-cover {
-    height: 45vw;
     min-width: 550px;
     max-width: 600px;
+    height: 45vw;
     max-height: 550px;
     background-color: var(--main-background-color);
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
@@ -91,13 +98,12 @@
     opacity: 0;
 }
 
-.game-thumbnail {
-    width: 100%;
-    height: auto;
-}
-
 .game-thumbnail-placeholder {
-    position: relative;
+    position: absolute;
+    border-radius: 50%;
+    border: 4px solid #2c00471f;
+    box-sizing: border-box;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
     width: 100%;
     padding-top: 100%;
     background-color: black;
@@ -106,7 +112,7 @@
 
 .button-right .btn {
     font-size: 40px;
-    color: #5e5097;
+    color: var(--game-button-color);
 }
 
 @media (max-width: 1023px) {

@@ -3,8 +3,7 @@ import { Game } from "../../../models/game";
 import { linkToString, stringToLink } from "../../../models/url";
 import GameWindow from "./../gameWindow";
 import { IconButton } from "@material-ui/core";
-import { ImageRounded, PlayCircleOutline, Launch } from "@material-ui/icons";
-import '../gameSection.css'
+import { PlayCircleOutline, Launch } from "@material-ui/icons";
 import './gameCard.css'
 import DisplayedLanguage from "../../../models/language";
 import ArtworkImage from "../../gallery/artworkCard/artworkImage";
@@ -59,9 +58,7 @@ export default class GameCard extends BaseCard<Game, GameCardProps, GameCardStat
 
     renderThumbnailPlaceholder() {
         return (
-            <div className="game-thumbnail-placeholder center">
-                <ImageRounded className="absolute-center" style={{ fontSize: 50, color: 'white' }} />
-            </div>
+            <div className="game-thumbnail-placeholder center" />
         )
     }
 
