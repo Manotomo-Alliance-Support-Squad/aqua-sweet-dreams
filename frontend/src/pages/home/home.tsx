@@ -65,7 +65,7 @@ const Anchors: Anchor[] = [
         href: "#footer-anchor",
         svgIcon: AnchorBotan,
         text: "Credits",
-        threshold: .5,
+        threshold: 1,
     }
 ]
 
