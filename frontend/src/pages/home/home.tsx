@@ -20,7 +20,7 @@ import GameSection from '../../components/gamesSection/gameSection';
 import { LanguageContext, LanguageContextValue } from '../../components/languageSwitch/languageContext';
 import MessageCard from '../../components/messageSection/messageCard/messageCard';
 import '../../components/headerSection/header.css';
-import { Anchor, AnchorSectionPosition } from '../../models/achor';
+import { Anchor, AnchorSectionPosition } from '../../models/anchor';
 import AnchorMultipleSection, { MultipleAnchorStates } from '../../components/anchor/anchorMultipleSection';
 import { ReactComponent as AnchorBotan } from "../../assets/icons/anchorIcon.svg";
 import { Game } from '../../models/game';

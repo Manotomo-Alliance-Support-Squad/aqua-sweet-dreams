@@ -1,6 +1,6 @@
 import React from "react";
 import { InView } from 'react-intersection-observer';
-import { Anchor } from "../../models/achor";
+import { Anchor } from "../../models/anchor";
 import { MultipleAnchorStates } from "../anchor/anchorMultipleSection";
 
 interface AnchorSupportedSectionProps {

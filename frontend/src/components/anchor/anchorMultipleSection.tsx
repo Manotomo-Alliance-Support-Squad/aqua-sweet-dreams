@@ -1,5 +1,5 @@
 import React from "react";
-import { Anchor, AnchorSectionProps } from "../../models/achor";
+import { Anchor, AnchorSectionProps } from "../../models/anchor";
 import AnchorButton from "./anchorButton";
 import "./anchorSection.css";
 
