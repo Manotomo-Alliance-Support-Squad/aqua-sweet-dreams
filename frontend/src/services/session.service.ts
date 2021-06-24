@@ -3,6 +3,7 @@ import {Artwork, ArtworkJson, artworkFromJson, artworkToJson, MultiArtwork, Mult
 import {Archive, ArchiveJson, archiveFromJson, archiveToJson} from "../models/archive";
 import {Video, VideoJson, videoFromJson, videoToJson} from "../models/video";
 import DisplayedLanguage from "../models/language";
+import { Game, gameFromJson, GameJson, gameToJson } from "../models/game";
 
 export default class SessionService {
     private static saveInCache<T>(key: string, object: T): void {
@@ -85,6 +86,16 @@ export default class SessionService {
     public static getVideo(): Video[] | null {
         let videos = SessionService.getFromCache<VideoJson[]>('videos');
         return videos?.map(videoFromJson) ?? null;
+    }
+
+    public static saveGame(games: Game[]): void {
+        let json = games.map(gameToJson);
+        SessionService.saveInCache<GameJson[]>('games', json);
+    }
+
+    public static getGame(): Game[] | null {
+        let games = SessionService.getFromCache<GameJson[]>('games');
+        return games?.map(gameFromJson) ?? null;
     }
 
     public static saveLanguage(language: DisplayedLanguage): void {

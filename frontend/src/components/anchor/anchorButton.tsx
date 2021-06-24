@@ -1,6 +1,6 @@
 import React from "react";
 import AnchorLink from "react-anchor-link-smooth-scroll";
-import { Anchor } from "../../models/achor";
+import { Anchor } from "../../models/anchor";
 import "./anchorSection.css"
 
 interface AnchorButtonProps {

@@ -13,7 +13,7 @@ const creditsNav = [
 
 export default function AltNav() {
     const location = useLocation();                                                                                          
-    if (location.pathname == "/home") {                                                                                      
+    if (location.pathname === "/home") {                                                                                      
         return <InPageNav navButtons={creditsNav}/>;                                                                         
     }                                                                                                                        
     return <span />

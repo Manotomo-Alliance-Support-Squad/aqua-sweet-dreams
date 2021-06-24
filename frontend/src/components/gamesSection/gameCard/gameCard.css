@@ -1,0 +1,147 @@
+:root {
+    --game-button-color: var(--theme-card-header-background);
+    --game-button-hover-color: white;
+}
+
+.game-text {
+    font-size: 24px;
+    margin: auto 0;
+    padding-left: 10px;
+}
+
+.game-description {
+    margin: 0 auto;
+    font-size: 20px;
+    padding: 0 25px;
+    padding-bottom: 35px;
+    word-wrap: break-word;
+}
+
+.game-container {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+
+.game-thumbnail-container {
+    height: 40vw;
+    width: 40vw;
+    max-width: 500px;
+    max-height: 500px;
+    position: relative;
+    /*For slide in-out effect*/
+    margin-left: -75px;
+    transition: all 0.8s ease;
+}
+
+.game-thumbnail-container button {
+    z-index: 1;
+    background: #ffffffb6;
+    padding: 2px;
+    font-size: 4.5em;
+    color: var(--game-button-color);
+    transition: all .5s ease;
+    /*To keep button at the center of the disc*/
+    position: absolute;
+    width: fit-content;
+    height: fit-content;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.game-thumbnail-container button:hover {
+    color: var(--game-button-hover-color);
+    background: #383838ab;
+}
+
+.game-thumbnail-container .MuiSvgIcon-root {
+    font-size: unset;
+}
+
+.game-thumbnail-container img {
+    position: absolute;
+    border-radius: 50%;
+    border: 4px solid #2c00471f;
+    box-sizing: border-box;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+}
+
+.game-cover {
+    min-width: 550px;
+    max-width: 600px;
+    height: 45vw;
+    max-height: 550px;
+    background-color: var(--main-background-color);
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+    position: relative;
+    border-radius: 10px;
+}
+
+.game-cover .card-footer {
+    position: absolute;
+    width: 100%;
+    bottom: -1px;
+}
+
+.view-port-hidden {
+    opacity: 1;
+}
+
+.view-port-hidden .game-thumbnail-container {
+    margin-left: -350px;
+}
+
+.view-port-hidden .game-thumbnail-container button {
+    opacity: 0;
+}
+
+.game-thumbnail-placeholder {
+    position: absolute;
+    border-radius: 50%;
+    border: 4px solid #2c00471f;
+    box-sizing: border-box;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+    width: 100%;
+    padding-top: 100%;
+    background-color: black;
+    opacity: 0.5;
+}
+
+.button-right .btn {
+    font-size: 40px;
+    color: var(--game-button-color);
+}
+
+@media (max-width: 1023px) {
+    .game-container {
+        flex-direction: column;
+        justify-content: center;
+        min-height: 135vw;
+    }
+    .game-thumbnail-container {
+        height: 75vw;
+        width: 75vw;
+        max-width: 550px;
+        max-height: 550px;
+        margin-left: 0;
+        margin-bottom: -12vw;
+    }
+    .game-cover {
+        width: 80vw;
+        min-width: unset;
+        height: unset;
+        min-height: 80vw;
+        max-height: unset;
+        transition: all 0.8s ease;
+    }
+    .view-port-hidden .game-thumbnail-container {
+        margin-left: unset;
+        margin-bottom: -25vw;
+    }
+    .view-port-hidden .game-cover {
+        margin-top: -20vw;
+    }
+}

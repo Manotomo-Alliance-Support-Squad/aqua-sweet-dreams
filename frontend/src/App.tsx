@@ -14,7 +14,7 @@ import FooterSection from "./components/footerSection/footer";
 import HomePage from './pages/home/home';
 import AltNav from './components/navigation/altnav';
 import AnchorSingleSection from "./components/anchor/anchorSingleSection";
-import { AnchorSectionPosition } from "./models/achor";
+import { AnchorSectionPosition } from "./models/anchor";
 import { ReactComponent as AnchorBotan } from "./assets/icons/toTopAnchorIcon.svg";
 
 interface AppProps {

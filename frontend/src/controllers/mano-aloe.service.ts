@@ -1,9 +1,10 @@
 import {Message, messageFromJson} from "../models/message";
-import {CountResponse, GalleryResponse, MultiGalleryResponse, MessageResponse, ArchiveResponse, AnnouncementResponse, VideoResponse} from "../models/response";
+import {CountResponse, GalleryResponse, MultiGalleryResponse, MessageResponse, ArchiveResponse, AnnouncementResponse, VideoResponse, GameResponse} from "../models/response";
 import {Artwork, MultiArtwork, artworkFromJson, multiArtworkFromJson} from "../models/artwork";
 import {Archive, archiveFromJson} from "../models/archive";
 import {Announcement, announcementFromJson} from "../models/announcement";
 import {Video, videoFromJson} from "../models/video";
+import { Game, gameFromJson } from "../models/game";
 
 
 export default class ManoAloeService {
@@ -172,4 +173,22 @@ export default class ManoAloeService {
                 throw error;
             })
     }
+
+    public getGame(): Promise<Game[]> {
+        return fetch(this.apiURL + 'games')
+            .then((res: { json: () => any; }) => {
+                return res.json();
+            })
+            .then((apiResponse: GameResponse) => {
+                return apiResponse.games.map(gameFromJson);
+            })
+            .catch((error: Error) => {
+                throw error;
+            })
+    }
+
+    public getGameCount(): Promise<number> {
+        return this.getCount('games');
+    }
+
 }
